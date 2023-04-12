@@ -10,8 +10,8 @@
     <meta name="description"
         content="Tool sederhana untuk melakukan pencarian lanjutan dan mengambil file dalam folder.">
     <meta name="author" content="Hayyi">
-  <script type="module" crossorigin src="/foclip/assets/index-8f57891e.js"></script>
-  <link rel="stylesheet" href="/foclip/assets/index-c5935fb0.css">
+  <script type="module" crossorigin src="/foclip/assets/index-7abfb922.js"></script>
+  <link rel="stylesheet" href="/foclip/assets/index-3c5e329f.css">
 </head>
 
 <body class="bg-gray-50">
@@ -98,8 +98,8 @@
                                         <div class="flex items-center py-2 border-b border-gray-200 last:border-b-0">
                                             <div>
                                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="h-5 w-5 text-gray-500 mr-2 icon icon-tabler icon-tabler-file-description" width="24"
-                                                    height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                    class="h-5 w-5 text-gray-500 mr-2 icon icon-tabler icon-tabler-file-description"
+                                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
                                                     stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -116,16 +116,21 @@
                                             </div>
                                         </div>
                                     </template>
+                                    <div x-show="!listFileFiltered.length" class="py-2 text-sm text-gray-500">
+                                        <p>Tidal ada file</p>
+                                    </div>
                                 </div>
                                 <div class="mt-3">
                                     <button type="button" x-show="listFileFiltered.length" x-on:click="downloadZip"
-                                        class="mr-2 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                        <span x-text="false ? 'Loading ...' : `Download zip ${listFileFiltered.length} files`"></span>
+                                        class="mr-1 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        <span
+                                            x-text="false ? 'Loading ...' : `Download zip ${listFileFiltered.length} files`"></span>
+                                    </button>
+                                    <button type="button" x-on:click="closeDir"
+                                        class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        Kembali
                                     </button>
                                 </div>
-                            </div>
-                            <div x-show="!listFileFiltered.length" class="text-sm text-gray-500">
-                                <p>Tidal ada file</p>
                             </div>
                         </div>
                     </div>
@@ -151,7 +156,11 @@
                                 </ul>
                             </div>
                             <div>
-                                <p class="mb-1"><b>Nb</b>: Tool tidal dapak dapat membuka folder di system files, pindakhkan folder jika ingin membuka. Contoh folder system files <code class="bg-yellow-50 rounded">`C:/Windows`</code>, <code class="bg-yellow-50 rounded">`C:/Users`</code>, <code class="bg-yellow-50 rounded">`%appdata%`</code>, dll.</p>
+                                <p class="mb-1"><b>Nb</b>: Tool tidal dapak dapat membuka folder di system files,
+                                    pindahkan folder jika ingin membuka. Contoh folder system files <code
+                                        class="bg-yellow-50 rounded">`C:/Windows`</code>, <code
+                                        class="bg-yellow-50 rounded">`C:/Users`</code>, <code
+                                        class="bg-yellow-50 rounded">`%appdata%`</code>, dll.</p>
                             </div>
                         </div>
                     </div>
