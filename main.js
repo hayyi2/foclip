@@ -13,6 +13,8 @@ Alpine.data('main', () => ({
     async openDir() {
         try {
             this.dirHandler = await window.showDirectoryPicker({ mode: 'read' })
+            this.orSearch = ""
+            this.andSearch = ""
             if (this.dirHandler) {
                 this.listFile = []
                 for await (const entry of this.dirHandler.values()) {
@@ -34,10 +36,10 @@ Alpine.data('main', () => ({
     },
 
     async filterListFile() {
-        const cos = this.orSearch.split("\n").map(item => item.trim())
+        const cos = this.orSearch.split("\n").map(item => item.trim()).filter(item => item)
         const cas = this.andSearch.trim()
         this.listFileFiltered = this.listFile
-            .filter(item => cos.map(text => item.includes(text)).filter(include => include).length > 0 && item.includes(cas))
+            .filter(item => (cos.length ? cos.map(text => item.includes(text)).filter(include => include).length > 0 : true) && item.includes(cas))
     },
 
     async downloadZip() {
@@ -50,9 +52,6 @@ Alpine.data('main', () => ({
                 }
             }
         }
-        
-        // const helloWorldReader = new TextReader("Hello world!");
-        // await zipWriter.add("hello.txt", helloWorldReader);
 
         const blobURL = URL.createObjectURL(await zipWriter.close());
 
